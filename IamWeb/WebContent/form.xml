@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fieldset name="create">
+	<field
+		id="id"
+		name="id"
+		type="hidden"
+		class=""
+		value=""
+	/>
+	<field
+		id="fname"
+		name="fname"
+		type="text"
+		class="form-control"
+		required="true"
+		placeholder="First Name"
+		value=""
+	/>
+	<field
+		id="lname"
+		name="lname"
+		type="text"
+		class="form-control"
+		required="true"
+		placeholder="Last Name"
+		value=""
+	/>
+	<field
+		id="date"
+		name="date"
+		type="date"
+		class="form-control"
+		required="true"
+		placeholder="Date"
+		value=""
+		readonly="true"
+	/>
+	<field
+		id="email"
+		name="email"
+		type="email"
+		class="form-control"
+		required="true"
+		placeholder="Email"
+		value=""
+	/>
+	
+</fieldset>
