@@ -23,58 +23,38 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="IDENTITIES", uniqueConstraints = {@UniqueConstraint(columnNames=("IDENTITIES_EMAIL"))})
 public class Identity {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="IDENTITIES_ID")
 	private int id;
-	
+
 	@Column(name="IDENTITIES_FIRSTNAME")
 	private String firstName;
-	
+
 	@Column(name="IDENTITIES_LASTNAME")
 	private String lastName;
-	
+
 	@Column(name="IDENTITIES_EMAIL")
 	private String email;
-	
+
 	@Column(name="IDENTITIES_BIRTHDATE")
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
-	
-//	private Map<String, String> properties = new HashMap<String, String>();
-//    private Map<String, Callable<Object>> callables = new HashMap<String, Callable<Object>>();
-//
-//    
-//    public String getProperty(String key) {
-//        return properties.get(key);
-//    }
-//
-//    public void setProperty(String key, String value) {
-//        properties.put(key, value);
-//    }
-//
-//    public Object call(String key) {
-//        Callable<Object> callable = callables.get(key);
-//        try {
-//			return callable.call();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//        return null;
-//    }
 
-//    public void define(String key, Callable<Object> callable) {
-//        callables.put(key, callable);
-//    }
-    
-    
-    
+	/**
+	 * This is the default constructor
+	 */
 	public Identity(){
-		
+
 	}
-	
+	/**
+	 * This is a constructor for Identity Object
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param birthDate
+	 */
 	public Identity(String firstName, String lastName, String email , Date birthDate) {
 		super();
 		this.firstName = firstName;
@@ -82,14 +62,22 @@ public class Identity {
 		this.email = email;
 		this.birthDate=birthDate;
 	}
+	/**
+	 * This is a constructor for Identity Object but without the birthdate
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 */
 	public Identity(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+
+	/**
+	 * Overriding the toString function to return the object in a String format
+	 * @return String
 	 */
 	@Override
 	public String toString() {
@@ -144,9 +132,17 @@ public class Identity {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+	/**
+	 * Return the ID of the object
+	 * @return
+	 */
 	public int getId() {
 		return id;
 	}
+	/**
+	 * Set the ID of the object
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}

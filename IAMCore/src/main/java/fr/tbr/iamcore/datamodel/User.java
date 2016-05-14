@@ -27,26 +27,28 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="USERS", uniqueConstraints = {@UniqueConstraint(columnNames=("USER_USERNAME"))})
 public class User {
-	
+
 	private static User instance = null;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="USER_ID")
 	private int id;
-	
+
 	@Column(name="USER_USERNAME")
 	private String username;
-	
+
 	@Column(name="USER_PASSWORD")
 	private String password;
-	
+
 	@JoinColumn(name="USERIDENTITY_ID")
 	@ManyToOne(cascade = {CascadeType.ALL})
 	Identity userIdentity;
-	
+	/**
+	 * This is the default constructor
+	 */
 	protected User() {
-	      // Exists only to defeat instantiation.
+		// Exists only to defeat instantiation.
 	}
 	public static User getInstance() {
 		if(instance == null) {
@@ -54,18 +56,30 @@ public class User {
 		}
 		return instance;
 	}
-	
-	
+
+	/**
+	 * This is a constructor of the object User
+	 * @param username
+	 * @param password
+	 * @param userIdentity
+	 */
 	public User(String username, String password, Identity userIdentity ) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.userIdentity = userIdentity;
 	}
-	
+	/**
+	 * This is to get the ID of the user
+	 * @return int
+	 */
 	public int getId() {
 		return id;
 	}
+	/**
+	 * This is to set the ID of the user
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -94,7 +108,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	/**
 	 * @return the birthDate
 	 */
