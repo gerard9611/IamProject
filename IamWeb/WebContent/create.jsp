@@ -43,7 +43,7 @@ This Page is used to:
 
 		<h1 class="text-center">Identities</h1>
 		<input type="text" id="searchInput" placeholder="Search" />
-		<button class="btn btn-info" onclick="getIdentities()">Search</button>
+		<button class="btn btn-info" onclick="gerardSpace.getIdentities()">Search</button>
 		<table class="table">
 			<thead>
 				<tr>
