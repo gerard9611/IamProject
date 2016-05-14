@@ -23,6 +23,7 @@ This page is used for:
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+		<script src="js/main.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -45,7 +46,6 @@ This page is used for:
 		</div>
 		<div id="text"></div>
 	</div>
-	<script src="js/main.js"></script>
 </body>
 
 </html>
