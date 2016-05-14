@@ -20,10 +20,13 @@ import fr.tbr.iamcore.services.dao.UserDAOInterface;
 @Transactional
 public class UserJDBCDAO implements UserDAOInterface {
 
-
+	/*
+	 * The Autowired should be required so that Spring
+	 * can use the session to connect with hibernate to the DB
+	 */
 	@Autowired(required = true)
 	private SessionFactory sessionFactory;
-	
+
 	/**
 	 * This function is used to write the user to DB
 	 * @param User
@@ -42,7 +45,7 @@ public class UserJDBCDAO implements UserDAOInterface {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * This function is used to authenticate the user
 	 * @param user

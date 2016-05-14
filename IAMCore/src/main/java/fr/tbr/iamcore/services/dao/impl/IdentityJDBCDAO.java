@@ -39,7 +39,10 @@ import fr.tbr.iamcore.services.dao.IdentityDAOInterface;
 @Repository
 @Transactional
 public class IdentityJDBCDAO implements IdentityDAOInterface {
-
+	/*
+	 * The Autowired should be required so that Spring
+	 * can use the session to connect with hibernate to the DB
+	 */
 	@Autowired(required = true)
 	private SessionFactory sessionFactory;
 
