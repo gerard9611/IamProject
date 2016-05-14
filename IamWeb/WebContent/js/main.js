@@ -1,3 +1,8 @@
+/**
+ * This is not imported in the project
+ * I imported the minified version for better loading speed
+ * This is only the readble version
+ */
 var gerardSpace = {
 		login:function ()
 		{
