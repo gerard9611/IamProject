@@ -23,7 +23,12 @@ public class UserJDBCDAO implements UserDAOInterface {
 
 	@Autowired(required = true)
 	private SessionFactory sessionFactory;
-
+	
+	/**
+	 * This function is used to write the user to DB
+	 * @param User
+	 * @return boolean (success or fail)
+	 */
 	@Override
 	public boolean write(User user) {
 		Session session = sessionFactory.getCurrentSession();
@@ -37,7 +42,12 @@ public class UserJDBCDAO implements UserDAOInterface {
 			return false;
 		}
 	}
-
+	
+	/**
+	 * This function is used to authenticate the user
+	 * @param user
+	 * @return boolean (success, fail)
+	 */
 	@Override
 	public boolean authenticate(User user) {
 		Session session = sessionFactory.getCurrentSession();

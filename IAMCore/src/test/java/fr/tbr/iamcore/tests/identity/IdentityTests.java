@@ -17,33 +17,32 @@ import fr.tbr.iamcore.datamodel.Identity;
  */
 public class IdentityTests {
 
-	
+
 	public static void main(String[] args){
 
-		
-		
-		
+
+
+
 	}
 
 	private static void searchTests() {
 		Identity thomas = new Identity("thomas", "broussard","tbr@tbr.com");
 		Identity quentin = new Identity("quentin", "decayeux","qdc@qdc.com");
-		
+
 	}
 
 	private static void olderWriteMethod(Identity identity) {
 		File file = createFile("/identities/identities.txt");
-		
+
 		PrintWriter writer = null;
 		try {
 			writer = new PrintWriter(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		writer.println("Begin");
 		write(identity, writer);
-		
+
 		writer.flush();
 		writer.close();
 	}
@@ -71,7 +70,7 @@ public class IdentityTests {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return file;
 	}
 }

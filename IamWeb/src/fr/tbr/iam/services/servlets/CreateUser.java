@@ -29,31 +29,32 @@ import fr.tbr.iamcore.services.dao.impl.UserJDBCDAO;
 public class CreateUser extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
 	//UserDAOInterface dao = new UserJDBCDAO();
-	
+
 	@Autowired
 	UserDAOInterface dao;
-    /**
-     * Default constructor. 
-     */
-    public CreateUser() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor. 
+	 */
+	public CreateUser() {
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("got GET request");
-		
-		
-		
+		doPost(request,response);
 	}
 
 	/**
+	 * This is used to create a User, it creates a User and an Identity
+	 * and write both on the DB
+	 * Knowing that a USER is an Identity
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @param fname, lname, username, password, email, date
+	 * @return redirects with or without error message
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		System.out.println("got POST request");
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
@@ -62,7 +63,7 @@ public class CreateUser extends GenericSpringServlet {
 		String email = request.getParameter("email");
 		String rawDate = request.getParameter("date");
 		Identity identity = new Identity(fname,lname,null);
-		
+
 		MessageDigest digest = null;
 		try 
 		{
@@ -73,28 +74,27 @@ public class CreateUser extends GenericSpringServlet {
 			e.printStackTrace();
 		}
 		byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-		
+
 		User user = User.getInstance();
-		
+
 		user.setUsername(username);
 		user.setPassword(String.format("%064x", new java.math.BigInteger(1, hash)));
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try {
 			date = formatter.parse(rawDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		identity.setBirthDate(date);
 		identity.setEmail(email);
 		user.setUserIdentity(identity);
 		boolean res = dao.write(user);
-	    response.setCharacterEncoding("UTF-8");
-	    if(res == true)
-	    	response.sendRedirect("/iamweb/");
-	    else
-	    	response.sendRedirect("/iamweb/index.jsp?msg=error");
+		response.setCharacterEncoding("UTF-8");
+		if(res == true)
+			response.sendRedirect("/iamweb/");
+		else
+			response.sendRedirect("/iamweb/index.jsp?msg=error");
 	}
 }

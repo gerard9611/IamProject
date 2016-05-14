@@ -24,29 +24,31 @@ import fr.tbr.iamcore.services.dao.impl.IdentityJDBCDAO;
 @WebServlet("/UpdateIdentity")
 public class UpdateIdentity extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
-	//IdentityDAOInterface dao = new IdentityJDBCDAO();
-	
+
 	@Autowired
 	IdentityDAOInterface dao;
-    /**
-     * Default constructor. 
-     */
-    public UpdateIdentity() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor. 
+	 */
+	public UpdateIdentity() {
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("got GET request");
+		doPost(request,response);
 	}
 
 	/**
+	 * This is not used anymore (OLD)
+	 * This is used to update the identity in the DB
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @param id, fname, lname, email, date
+	 * @return nothing
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		System.out.println("got POST request");
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String fname = request.getParameter("fname");
@@ -58,7 +60,6 @@ public class UpdateIdentity extends GenericSpringServlet {
 		try {
 			date = formatter.parse(rawDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Identity identity = new Identity(fname, lname, email,date);

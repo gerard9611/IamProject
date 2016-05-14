@@ -23,48 +23,45 @@ import fr.tbr.iam.parser.XMLParser;
  */
 @WebServlet("/Forms")
 public class Forms extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-      
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Forms() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        String filename = request.getParameter("filename");
-        HttpSession session = request.getSession();
-        ServletContext sc = session.getServletContext();
-        URL url = sc.getResource("/"+filename+".xml");
-//        String path = getServletContext().getRealPath("/");
-        System.out.println("in serv: "+url.toString());
-        XMLParser parser = new XMLParser ();
-        PrintWriter out = response.getWriter();
-        try
-        {
-            String doc = parser.parse(url);
-            out.println(doc);
-        }
-        catch (DocumentException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-       
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Forms() {
+		super();
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
+	/**
+	 * This function is used to call the Forms XML Parser and return the parsed data
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @param filename
+	 * @return String as the document content
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String filename = request.getParameter("filename");
+		HttpSession session = request.getSession();
+		ServletContext sc = session.getServletContext();
+		URL url = sc.getResource("/"+filename+".xml");
+		XMLParser parser = new XMLParser ();
+		PrintWriter out = response.getWriter();
+		try
+		{
+			String doc = parser.parse(url);
+			out.println(doc);
+		}
+		catch (DocumentException e)
+		{
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }

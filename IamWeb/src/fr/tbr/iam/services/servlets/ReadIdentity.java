@@ -29,35 +29,34 @@ import fr.tbr.iamcore.services.dao.impl.IdentityJDBCDAO;
 @WebServlet("/ReadIdentity")
 public class ReadIdentity extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
-	//IdentityDAOInterface dao = new IdentityJDBCDAO();
-	
+
 	@Autowired
 	IdentityDAOInterface dao;
-    /**
-     * Default constructor. 
-     */
-    public ReadIdentity() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor. 
+	 */
+	public ReadIdentity() {
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("got GET request");
 		doPost(request,response);
-		
-		
 	}
 
 	/**
+	 * This is used to read the identities form the DB
+	 * it is used to read all the identities, or search for identities
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @param searchText
+	 * @return List of identities
 	 */
 	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		ArrayList<Identity> identities = new ArrayList<Identity>();
-		
+
 		String searchText = request.getParameter("searchText");
 		System.out.println("got POST request with text ");
 		if(searchText.isEmpty())
@@ -69,10 +68,10 @@ public class ReadIdentity extends GenericSpringServlet {
 			identities=(ArrayList<Identity>) dao.search(searchText);
 		}
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-	    String json = gson.toJson(identities);
-	    System.out.println(json);
-	    response.setContentType("application/json");
-	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(json);
+		String json = gson.toJson(identities);
+		System.out.println(json);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(json);
 	}
 }

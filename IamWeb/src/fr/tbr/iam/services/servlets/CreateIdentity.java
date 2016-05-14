@@ -26,32 +26,34 @@ import fr.tbr.iamcore.services.dao.impl.IdentityJDBCDAO;
 public class CreateIdentity extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
 	//IdentityDAOInterface dao = new IdentityJDBCDAO();
-	
+
 	@Autowired
 	IdentityDAOInterface dao;
-    /**
-     * Default constructor. 
-     */
-    public CreateIdentity() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor. 
+	 */
+	public CreateIdentity() {
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("got GET request");
-		
+		doPost(request,response);
 	}
 
 	/**
+	 * This is used to create and identity, it creates an object
+	 * Identity and write to the DB
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @param fname, lname, email, date
+	 * @return redirects with or without error message
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		System.out.println("got POST request");
 		Identity identity = new Identity();
-		
+
 		if(!request.getParameter("id").equals(""))
 		{	
 			int id = Integer.parseInt(request.getParameter("id"));
@@ -61,12 +63,12 @@ public class CreateIdentity extends GenericSpringServlet {
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
 		String rawDate = request.getParameter("date");
-		
-		
+
+
 		identity.setFirstName(fname);
 		identity.setLastName(lname);
 		identity.setEmail(email);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
 		try 
@@ -90,6 +92,6 @@ public class CreateIdentity extends GenericSpringServlet {
 		{
 			response.sendRedirect("/iamweb/create.jsp?msg=error");
 		}
-	    
+
 	}
 }

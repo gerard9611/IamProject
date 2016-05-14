@@ -38,10 +38,10 @@ public class JDBCTests {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		//2-Prepare the connection
-		String url = "jdbc:mysql://localhost:3306/IAM";
+		String url = "jdbc:mysql://localhost:8889/IAM";
 		
 		//3-connect
-		Connection connection = DriverManager.getConnection(url, "root", "ieng101");
+		Connection connection = DriverManager.getConnection(url, "root", "root");
 		return connection;
 	}
 	

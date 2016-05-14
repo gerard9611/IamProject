@@ -1,0 +1,7 @@
+fr.tbr.iamcore.datamodel
+fr.tbr.iamcore.lauchers
+fr.tbr.iamcore.services.dao
+fr.tbr.iamcore.services.dao.impl
+fr.tbr.iamcore.tests.identity
+fr.tbr.iamcore.tests.identity.jdbc
+fr.tbr.iamcore.tests.spring

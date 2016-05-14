@@ -24,37 +24,40 @@ import fr.tbr.iamcore.services.dao.impl.IdentityJDBCDAO;
 @WebServlet("/DeleteIdentity")
 public class DeleteIdentity extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
-	//IdentityDAOInterface dao = new IdentityJDBCDAO();
-	
+
 	@Autowired
 	IdentityDAOInterface dao;
-    /**
-     * Default constructor. 
-     */
-    public DeleteIdentity() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor. 
+	 */
+	public DeleteIdentity() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("got GET request");
+		doPost(request,response);
 	}
 
 	/**
+	 * This is used to delete an identity from the DB
+	 * It creates a new identity and delete it.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @param id
+	 * @return boolean succes, fail
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		System.out.println("got POST request");
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		
+
 		Identity identity = new Identity();
 		identity.setId(id);
-		
+
 		Boolean results = dao.delete(identity);
 		response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(results.toString());
+		response.getWriter().write(results.toString());
 	}
 }
